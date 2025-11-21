@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpwefbt5q1bo5"]
+
+[ext_resource type="Texture2D" uid="uid://d2ut0yupocpbi" path="res://Assets/engine_top.png" id="1_lycih"]
+[ext_resource type="Script" uid="uid://c1wjg2x0l5l6c" path="res://main_ship.gd" id="1_s23y3"]
+[ext_resource type="Texture2D" uid="uid://bexud4hydafhq" path="res://Assets/engine_bottom.png" id="2_jhjf4"]
+[ext_resource type="Texture2D" uid="uid://bpte2y4v6h1ei" path="res://Assets/support_engine.png" id="3_s23y3"]
+[ext_resource type="Script" uid="uid://b13e8mtv11mx5" path="res://planet_gravity.gd" id="4_jhjf4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0davg"]
+load_path = "res://.godot/imported/Screenshot 2025-10-25 050649.png-7e091fe209f1ee10850a4bca54fdcf1d.ctex"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s23y3"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(8, 6)
+
+[node name="SpaceShip" type="RigidBody2D" parent="." groups=["gravity_objects"]]
+position = Vector2(470, -151)
+gravity_scale = 0.0
+linear_damp = 0.1
+angular_damp = 0.2
+script = ExtResource("1_s23y3")
+thrust_strength = null
+engine_back = null
+engine_top = null
+engine_bottom = null
+engine_support = null
+
+[node name="Camera2D" type="Camera2D" parent="SpaceShip"]
+position = Vector2(12, -88)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceShip"]
+position = Vector2(-71, 10)
+scale = Vector2(0.673996, 0.673996)
+texture = SubResource("CompressedTexture2D_0davg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpaceShip"]
+
+[node name="backEngine" type="Node2D" parent="SpaceShip"]
+position = Vector2(-345, 16)
+
+[node name="top_engine" type="Node2D" parent="SpaceShip"]
+position = Vector2(55, -42)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceShip/top_engine"]
+visibility_layer = 5
+position = Vector2(-31, -3)
+scale = Vector2(0.70641, 0.70641)
+texture = ExtResource("1_lycih")
+
+[node name="sub_engine" type="Node2D" parent="SpaceShip"]
+position = Vector2(131, 65)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceShip/sub_engine"]
+position = Vector2(-38, -1.00001)
+scale = Vector2(0.72291, 0.72291)
+texture = ExtResource("2_jhjf4")
+
+[node name="support_engw" type="Node2D" parent="SpaceShip"]
+position = Vector2(-205, 42)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpaceShip/support_engw"]
+position = Vector2(-37, -3)
+scale = Vector2(0.620541, 0.620541)
+texture = ExtResource("3_s23y3")
+
+[node name="stone" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="stone"]
+position = Vector2(3671, -485)
+scale = Vector2(59.1836, 41.4116)
+texture = SubResource("PlaceholderTexture2D_s23y3")
+
+[node name="PlanetGravity" type="Node2D" parent="."]
+script = ExtResource("4_jhjf4")
